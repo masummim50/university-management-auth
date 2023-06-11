@@ -1,8 +1,14 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import userService from './user.service'
 
-const createUserController = async (req: Request, res: Response) => {
+const createUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
+    // validate request using zod
+
     const user = req.body
     const createdUser = await userService.createUser(user)
     res.status(200).json({
@@ -10,12 +16,8 @@ const createUserController = async (req: Request, res: Response) => {
       message: 'User created Successfully',
       data: createdUser,
     })
-  } catch (error: any) {
-    res.status(400).json({
-      success: false,
-      message: 'User creation failed',
-      error: error?.message,
-    })
+  } catch (error) {
+    next(error)
   }
 }
 
