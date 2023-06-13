@@ -1,0 +1,2 @@
+[31mFri Jun 02 2023: 10:26:57 -  [right meow!] error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.[39m
+[31mSat Jun 10 2023: 10:19:35 -  [right meow!] error: error => 'unhandle rejection error'[39m
