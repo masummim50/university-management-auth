@@ -1,5 +1,7 @@
 import { model, Schema } from 'mongoose'
 import { ISemester, months } from './semester.interface'
+import ApiError from '../../../errors/ApiError'
+import status from 'http-status'
 
 // 2. Create a Schema corresponding to the document interface.
 const semesterSchema = new Schema<ISemester>(
@@ -33,6 +35,14 @@ const semesterSchema = new Schema<ISemester>(
     timestamps: true,
   }
 )
+
+semesterSchema.pre('save', async function (next) {
+  const isExist = await Semester.findOne({ title: this.title, year: this.year })
+  if (isExist) {
+    throw new ApiError(status.CONFLICT, 'Semester already exists')
+  }
+  next()
+})
 
 // 3. Create a Model.
 export const Semester = model<ISemester>('Semester', semesterSchema)

@@ -1,7 +1,6 @@
 import { ZodError, ZodIssue } from 'zod'
 
 export const handleZodError = (error: ZodError) => {
-  console.log('my zod errors', error.issues)
   const errors = error.issues.map((issue: ZodIssue) => {
     return {
       path: issue?.path[issue.path.length - 1],
