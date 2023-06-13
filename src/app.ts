@@ -1,24 +1,23 @@
-import express, { Application } from 'express'
+import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
-import { UserRouter } from './app/modules/user/user.route'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
-import { SemesterRouter } from './app/modules/semester/semester.route'
+import { Routes } from './app/routes'
+import status from 'http-status'
+
 export const app: Application = express()
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// use routes
-app.use('/api/v1/user', UserRouter)
-app.use('/api/v1/semester', SemesterRouter)
+// All Routes
 
+app.use('/api/v1/', Routes)
 // testing error class
 // testing
-// app.get('/', (req: Request, res: Response) => {
-//   Promise.reject(error => 'unhandle rejection error')
-//   // res.send('App Home Page')
-// })
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).json('App Home Page')
+})
 
 // class customError extends Error {
 //   statusCode: number
@@ -40,3 +39,17 @@ app.use('/api/v1/semester', SemesterRouter)
 
 // global error handler
 app.use(globalErrorHandler)
+
+app.use((req, res) => {
+  console.log('last one running')
+  res.status(status.NOT_FOUND).json({
+    success: false,
+    message: 'Route not found',
+    messages: [
+      {
+        path: req.url,
+        message: 'not found',
+      },
+    ],
+  })
+})

@@ -13,7 +13,7 @@ const createSemesterController = async (
 
     res.status(200).json({
       success: true,
-      message: 'User created Successfully',
+      message: 'Semester created Successfully',
       data: result,
     })
   } catch (error) {

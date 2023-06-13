@@ -35,3 +35,10 @@ export const months = [
   'November',
   'December',
 ] as const
+
+// constants
+export const semesterMapper = {
+  Autumn: '01',
+  Summer: '02',
+  Fall: '03',
+}

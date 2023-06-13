@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express'
 import config from '../../config'
 import { handleValidationError } from '../../errors/handleValidationError'
@@ -28,7 +29,6 @@ const globalErrorHandler = async (
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ZodError) {
-    console.log('zod error')
     const simplifiedError = handleZodError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
@@ -57,7 +57,6 @@ const globalErrorHandler = async (
     errorMessages,
     stack: config.node_env !== 'production' ? error?.stack : undefined,
   })
-  next()
 }
 
 export default globalErrorHandler
