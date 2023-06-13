@@ -14,6 +14,14 @@ const createSemester = async (
   return result
 }
 
+const getAllSemester = async (
+  pagination: object
+): Promise<ISemester[] | null> => {
+  const result = await Semester.find(pagination)
+  return result
+}
+
 export const semesterServices = {
   createSemester,
+  getAllSemester,
 }
