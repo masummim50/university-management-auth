@@ -5,7 +5,7 @@ export const handleValidationError = (
 ) => {
   const errors = Object.values(error.errors).map(el => {
     return {
-      name: el?.path,
+      path: el?.path,
       message: el?.message,
     }
   })

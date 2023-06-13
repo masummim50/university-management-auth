@@ -6,7 +6,7 @@ import { ZodError } from 'zod'
 import { handleZodError } from '../../errors/handleZodError'
 
 type IGenericErrorMessage = {
-  name: string
+  path: string | number
   message: string
 }
 
@@ -37,7 +37,7 @@ const globalErrorHandler = async (
     message = 'Internal Server Error'
     errorMessages = [
       {
-        name: error?.message,
+        path: error?.message,
         message: error?.message,
       },
     ]
@@ -45,7 +45,7 @@ const globalErrorHandler = async (
     message = 'Internal Server Error'
     errorMessages = [
       {
-        name: error?.message,
+        path: error?.message,
         message: error?.message,
       },
     ]
