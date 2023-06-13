@@ -7,8 +7,6 @@ const createUserController = async (
   next: NextFunction
 ) => {
   try {
-    // validate request using zod
-
     const user = req.body
     const createdUser = await userService.createUser(user)
     res.status(200).json({

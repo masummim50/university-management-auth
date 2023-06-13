@@ -13,6 +13,4 @@ router.post(
   semesterController.createSemesterController
 )
 
-export default {
-  SemesterRouter: router,
-}
+export const SemesterRouter = router

@@ -11,6 +11,4 @@ router.post(
   userController.createUserController
 )
 
-export default {
-  UserRouter: router,
-}
+export const UserRouter = router

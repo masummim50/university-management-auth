@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
+import { semesterServices } from './semester.service'
 
 const createSemesterController = async (
   req: Request,
@@ -7,11 +8,13 @@ const createSemesterController = async (
 ) => {
   try {
     // validate request using zod
+    const data = req.body
+    const result = await semesterServices.createSemester(data)
 
     res.status(200).json({
       success: true,
       message: 'User created Successfully',
-      data: undefined,
+      data: result,
     })
   } catch (error) {
     next(error)
